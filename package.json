@@ -4,22 +4,23 @@
   "version": "0.0.0",
   "author": "tily <tidnlyam@gmail.com>",
   "license": "MIT",
-
-  "keywords": ["hubot","hubot-scripts"],
-
+  "keywords": [
+    "hubot",
+    "hubot-scripts"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/hubot-scripts/hubot-rec.git"
   },
-
   "bugs": {
     "url": "https://github.com/hubot-scripts/hubot-rec/issues"
   },
-
   "dependencies": {
-    "coffee-script": "~1.6"
+    "coffee-script": "~1.6",
+    "ejs": "^2.3.1",
+    "moment": "^2.9.0",
+    "moment-duration-format": "^1.3.0"
   },
-
   "devDependencies": {
     "mocha": "*",
     "chai": "*",
@@ -30,9 +31,7 @@
     "matchdep": "~0.1.2",
     "grunt-contrib-watch": "~0.5.3"
   },
-
   "main": "index.coffee",
-
   "scripts": {
     "test": "grunt test"
   }
