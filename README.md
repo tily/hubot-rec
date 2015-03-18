@@ -54,7 +54,7 @@ Properties of `rec`:
   room: <room>,
   title: <title>,
   startedAt: <timestamp>,
-  stoppedAt: <timestamp>
+  stoppedAt: <timestamp>,
   messages: <list of msgs>
 }
 ```
