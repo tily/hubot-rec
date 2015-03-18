@@ -1,7 +1,7 @@
 {
   "name": "hubot-rec",
   "description": "A hubot script to record chat histories",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "tily <tidnlyam@gmail.com>",
   "license": "MIT",
   "keywords": [
