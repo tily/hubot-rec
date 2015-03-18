@@ -47,21 +47,6 @@ formatRec = (rec)->
   formatted = rec.title + ' at ' + startedAt
   formatted + ' (room=' + rec.room + ', duration=' + duration + ', messages=' + rec.messages.length + ')'
 
-uploadRec = (rec, msg)->
-  # TODO: make pluggable
-  markdown = ejs.render tmpl, rec: rec, moment: moment
-  console.log markdown
-  data = JSON.stringify
-    description: rec.title
-    public: true
-    files:
-      "chat.md":
-        content: markdown
-  msg.robot.http("https://api.github.com/gists")
-    .post(data) (err, res, body) -> 
-      json = JSON.parse(body)
-      msg.send "uploaded to: " + json['html_url']
-
 recHear = (msg)->
   room = msg.message.room
   return if !rec[room]
@@ -96,7 +81,7 @@ recStop = (msg)->
   msg.robot.brain.data.rec.push(rec[room])
   msg.robot.brain.save()
   msg.send "stopped recording: " + formatRec(rec[room])
-  uploadRec(rec[room], msg)
+  msg.robot.emit("recStopped", rec: rec[room], msg: msg)
   rec[room] = null
 
 recTitle = (msg)->
@@ -151,4 +136,3 @@ module.exports = (robot)->
     status: recStatus
     list: recList
     delete: recDelete
-    upload: uploadRec
