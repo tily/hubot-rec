@@ -6,10 +6,6 @@
 #   moment-duration-format
 #   ejs
 # 
-# Configuration:
-#   HUBOT_REC_MAX_MESSAGES
-#   HUBOT_REC_MAX_DURATION
-#
 # Commands:
 #   hubot rec start <title> - start recording, optionally with title
 #   hubot rec cancel - cancel current recording
