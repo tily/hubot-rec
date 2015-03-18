@@ -26,17 +26,6 @@ require 'moment-duration-format'
 moment = require 'moment'
 ejs = require 'ejs'
 
-tmpl = """
-# <%= rec.title %>
-
-started at: <%= moment(rec.startedAt).format('YYYY/MM/DD hh:mm:ss') %>, 
-duration: <%= moment.duration((rec.stoppedAt - rec.startedAt)/1000, 'seconds').format('hh:mm:ss', {trim: false}) %>,
-messages: <%= rec.messages.length %>
-
-<% rec.messages.forEach(function(message) { -%>
-* <%= moment(message.createdAt).format('YYYY/MM/DD hh:mm:ss') %> <%= message.user.name %>: <%= message.text %>
-<% }) -%>
-"""
 rec = {}
 
 formatRec = (rec)->
