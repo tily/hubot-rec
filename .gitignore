@@ -1,3 +1,4 @@
 node_modules
 external-scripts.json
 bin
+.hubot_history
