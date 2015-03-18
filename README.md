@@ -22,3 +22,21 @@ Then add **hubot-rec** to your `external-scripts.json`:
 user1>> hubot hello
 hubot>> hello!
 ```
+
+## Events
+
+```
+recStopped - {rec: <rec>, msg: <msg>}
+```
+
+Properties of `rec`:
+
+```
+{
+  room: <room>,
+  title: <title>,
+  startedAt: <timestamp>,
+  stoppedAt: <timestamp>
+  messages: <list of msgs>
+}
+```
