@@ -4,7 +4,6 @@
 # Dependencies:
 #   moment
 #   moment-duration-format
-#   ejs
 # 
 # Commands:
 #   hubot rec start <title> - start recording, optionally with title
@@ -20,7 +19,6 @@
 
 require 'moment-duration-format'
 moment = require 'moment'
-ejs = require 'ejs'
 
 rec = {}
 
