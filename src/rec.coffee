@@ -53,7 +53,7 @@ recStart = (msg)->
     title: msg.match[2] || 'Untitled'
     startedAt: Date.now()
     messages: []
-  msg.send "started recording: " + formatRec(rec[room])
+  msg.reply "started recording: " + formatRec(rec[room])
 
 recCancel = (msg)->
   room = msg.message.room
@@ -69,7 +69,7 @@ recStop = (msg)->
   rec[room].stoppedAt = Date.now()
   msg.robot.brain.data.rec.push(rec[room])
   msg.robot.brain.save()
-  msg.send "stopped recording: " + formatRec(rec[room])
+  msg.reply "stopped recording: " + formatRec(rec[room])
   msg.robot.emit("recStopped", rec: rec[room], msg: msg)
   rec[room] = null
 
@@ -92,10 +92,10 @@ recList = (msg)->
   if !msg.robot.brain.data.rec
     msg.robot.brain.data.rec = []
   if msg.robot.brain.data.rec.length == 0
-    msg.send "(no recordings)"
+    msg.reply "(no recordings)"
   else
     for rec, i in msg.robot.brain.data.rec
-      msg.send "[" + i + "] " + formatRec(rec)
+      msg.reply "[" + i + "] " + formatRec(rec)
 
 recDelete = (msg)->
   if !msg.robot.brain.data.rec
