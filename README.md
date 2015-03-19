@@ -58,3 +58,12 @@ Properties of `rec`:
   messages: <list of msgs>
 }
 ```
+
+## URLs
+
+Recorded messages can be viewed at:
+
+```
+/rec
+/rec/:id
+```
