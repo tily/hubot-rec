@@ -14,11 +14,17 @@
 #   hubot rec list - list recordings
 #   hubot rec delete <number> - delete recording
 #
+# URLS:
+#
+#   /rec
+#   /rec/:id
+#
 # Author:
 #   tily <tidnlyam@gmail.com>
 
 require 'moment-duration-format'
 moment = require 'moment'
+hamlc = require 'haml-coffee'
 
 rec = {}
 
@@ -110,6 +116,46 @@ module.exports = (robot)->
   robot.respond /rec status/, recStatus
   robot.respond /rec list/, recList
   robot.respond /rec delete (\d+)/, recDelete
+
+  robot.router.get '/rec', (req, res)->
+    rec = robot.brain.data.rec
+    tpl = """
+    !!! html
+    %html
+      %head
+        %title hubot rec
+        %link{rel:'stylesheet',href:'//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'}
+      %body
+        %div.container
+          %div.jumbotron
+            %h1
+              %a{href:'/rec'} hubot rec
+            %ul
+              - for rec, i in @rec
+                %li
+                  %a{href:"/rec/" + i}= @formatRec(rec)
+    """
+    res.end hamlc.render tpl, {rec: rec, formatRec: formatRec}
+
+  robot.router.get '/rec/:id', (req, res)->
+    rec = robot.brain.data.rec[parseInt(req.params.id)]
+    tpl = """
+    !!! html
+    %html
+      %head
+        %title= "hubot rec - " + @formatRec(@rec)
+        %link{rel:'stylesheet',href:'//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'}
+      %body
+        %div.container
+          %div.jumbotron
+            %h1
+              %a{href:'/rec'} hubot rec
+            %h2= @formatRec(@rec)
+            %ul
+              - for msg in @rec.messages
+                %li= @moment(msg.createdAt).format('YYYY/MM/DD hh:mm:ss') + ':' + msg.user.name + ':' + msg.text
+    """
+    res.end hamlc.render tpl, {rec: rec, formatRec: formatRec, moment: moment}
 
   robot.rec =
     start: recStart
