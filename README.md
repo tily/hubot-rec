@@ -1,6 +1,6 @@
 # hubot-rec
 
-A hubot script to record chat histories
+A hubot script to record chat histories.
 
 See [`src/rec.coffee`](src/rec.coffee) for full documentation.
 
