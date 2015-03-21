@@ -2,6 +2,8 @@
 #   A hubot script to record chat histories
 # 
 # Dependencies:
+#   coffee-script
+#   haml-coffee
 #   moment
 #   moment-duration-format
 # 
